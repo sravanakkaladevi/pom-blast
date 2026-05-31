@@ -1,0 +1,344 @@
+/* ─────────────────────────────────────────
+   FONTS
+───────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=Lato:wght@300;400&display=swap');
+
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+:root {
+  --pom-red:    #c0392b;
+  --pom-deep:   #7b1a12;
+  --pom-gold:   #d4a857;
+  --pom-cream:  #f5ede0;
+  --pom-white:  #fff;
+  --pom-black:  #050505;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif:   'Cormorant Garamond', serif;
+  --font-body:    'Lato', sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   RESET / BASE
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--pom-black);
+  color: var(--pom-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   HERO WRAPPER
+   height = scroll distance (300vh) is
+   handled by GSAP pin, so we just need
+   the visible viewport height here.
+───────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--pom-black);
+}
+
+/* ─────────────────────────────────────────
+   VIDEO
+───────────────────────────────────────── */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────
+   DARK OVERLAY
+───────────────────────────────────────── */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--pom-black);
+  opacity: 0.55;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   VIGNETTE (permanent, subtle)
+───────────────────────────────────────── */
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0,0,0,0.72) 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   LETTERBOX BARS
+───────────────────────────────────────── */
+.hero__bar {
+  position: absolute;
+  left: 0; right: 0;
+  height: 52px;
+  background: var(--pom-black);
+  z-index: 10;
+}
+.hero__bar--top    { top: 0; }
+.hero__bar--bottom { bottom: 0; }
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+.hero__nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3vw;
+  z-index: 20;
+  /* subtle bottom border */
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero__nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.35em;
+  color: var(--pom-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--pom-red);
+  box-shadow: 0 0 10px var(--pom-red);
+}
+
+.hero__nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.hero__nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.hero__nav-links a:hover { color: var(--pom-gold); }
+
+.hero__nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pom-black);
+  background: var(--pom-red);
+  border: none;
+  padding: 7px 20px;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.3s, transform 0.2s;
+}
+.hero__nav-cta:hover {
+  background: var(--pom-gold);
+  transform: scaleX(1.04);
+}
+
+/* ─────────────────────────────────────────
+   HERO TITLE (initial screen)
+───────────────────────────────────────── */
+.hero__title {
+  position: absolute;
+  bottom: 14vh;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.title-small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--pom-gold);
+  margin-bottom: 0.5rem;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--pom-white);
+  /* paint the red on "Pomegranate" italic */
+}
+
+.hero__title em {
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 0.55em;
+  letter-spacing: 0.08em;
+  color: var(--pom-red);
+  display: block;
+  margin-top: 0.3rem;
+  text-shadow: 0 0 40px rgba(192,57,43,0.5);
+}
+
+/* ─────────────────────────────────────────
+   SIDE PANELS
+───────────────────────────────────────── */
+.hero__panel {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  opacity: 0;               /* GSAP reveals */
+  max-width: 280px;
+}
+
+.hero__panel--left  { left: 4vw; text-align: left; }
+.hero__panel--right { right: 4vw; text-align: right; }
+
+.panel-label {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--pom-gold);
+  margin-bottom: 1rem;
+}
+
+.panel-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--pom-white);
+  margin-bottom: 1.2rem;
+}
+
+.panel-body {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.4rem;
+}
+
+/* Decorative line on left panel */
+.panel-line {
+  width: 40px;
+  height: 1px;
+  background: var(--pom-red);
+  box-shadow: 0 0 8px var(--pom-red);
+}
+
+/* CTA button on right panel */
+.panel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pom-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+  margin-left: auto;
+}
+.panel-btn:hover { color: var(--pom-gold); border-color: var(--pom-gold); }
+.panel-btn svg { width: 16px; height: 16px; }
+
+/* ─────────────────────────────────────────
+   PLAY BUTTON
+───────────────────────────────────────── */
+.hero__play-btn {
+  position: absolute;
+  bottom: 70px;
+  right: 3vw;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(192, 57, 43, 0.9);
+  border: 1px solid rgba(212, 168, 87, 0.3);
+  color: var(--pom-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.hero__play-btn:hover {
+  background: rgba(192, 57, 43, 1);
+  border-color: rgba(212, 168, 87, 0.6);
+  transform: scale(1.08);
+}
+
+.hero__play-btn svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 2px;
+}
+
+.pause-bar {
+  display: inline-block;
+  width: 2px;
+  height: 24px;
+  background: var(--pom-white);
+  margin: 0 4px;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero__nav-links { display: none; }
+  .hero__panel { max-width: 46vw; }
+  .hero__panel--left  { left: 3vw; }
+  .hero__panel--right { right: 3vw; }
+  .panel-heading { font-size: 1.5rem; }
+  .panel-body { font-size: 0.7rem; }
+  .hero__play-btn { width: 50px; height: 50px; }
+  .hero__play-btn svg { width: 20px; height: 20px; }
+}

@@ -1,0 +1,258 @@
+/* ─────────────────────────────────────────
+   CARDS SECTION
+───────────────────────────────────────── */
+.cards-section {
+    position: relative;
+    background: #0a0604;
+    padding: 10vh 6vw 14vh;
+    overflow: hidden;
+  }
+  
+  /* SVG grain overlay for texture */
+  .cards-section__grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  
+  /* ─────────────────────────────────────────
+     SECTION HEADER
+  ───────────────────────────────────────── */
+  .cards-section__header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 8vh;
+  }
+  
+  .cards-section__eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: #d4a857;
+    margin-bottom: 1.2rem;
+  }
+  
+  .cards-section__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.08em;
+    color: #f5ede0;
+  }
+  
+  .cards-section__title em {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 0.75em;
+    color: #c0392b;
+    display: block;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 40px rgba(192, 57, 43, 0.4);
+  }
+  
+  .cards-section__rule {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c0392b, transparent);
+    margin: 2rem auto 0;
+  }
+  
+  /* ─────────────────────────────────────────
+     CARDS GRID
+  ───────────────────────────────────────── */
+  .cards-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5vw;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* ─────────────────────────────────────────
+     INDIVIDUAL CARD
+  ───────────────────────────────────────── */
+  .pom-card {
+    position: relative;
+    background: #110c08;
+    border: 1px solid rgba(212, 168, 87, 0.12);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.4s, transform 0.4s;
+    will-change: transform, opacity;
+  }
+  
+  .pom-card:hover {
+    border-color: rgba(192, 57, 43, 0.5);
+    transform: translateY(-6px);
+  }
+  
+  /* Corner accent — top right decorative bracket */
+  .pom-card__corner {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 22px;
+    height: 22px;
+    border-top: 1px solid rgba(212, 168, 87, 0.5);
+    border-right: 1px solid rgba(212, 168, 87, 0.5);
+    pointer-events: none;
+    transition: border-color 0.4s;
+  }
+  .pom-card:hover .pom-card__corner {
+    border-color: rgba(192, 57, 43, 0.8);
+  }
+  
+  /* ─── Image ─── */
+  .pom-card__image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  
+  .pom-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: saturate(0.85) brightness(0.9);
+  }
+  
+  .pom-card:hover .pom-card__image {
+    transform: scale(1.06);
+    filter: saturate(1.1) brightness(1);
+  }
+  
+  .pom-card__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(10, 6, 4, 0.85) 100%
+    );
+    z-index: 1;
+  }
+  
+  /* Card number — large ghost number */
+  .pom-card__number {
+    position: absolute;
+    bottom: 8px;
+    right: 14px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.06);
+    z-index: 2;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+    transition: color 0.4s;
+  }
+  .pom-card:hover .pom-card__number {
+    color: rgba(192, 57, 43, 0.12);
+  }
+  
+  /* ─── Body ─── */
+  .pom-card__body {
+    padding: 1.8rem 1.8rem 2rem;
+  }
+  
+  .pom-card__label {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: #d4a857;
+    margin-bottom: 0.8rem;
+  }
+  
+  .pom-card__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: #f5ede0;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .pom-card__text {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(245, 237, 224, 0.5);
+    margin-bottom: 1.6rem;
+  }
+  
+  /* CTA button */
+  .pom-card__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #f5ede0;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color 0.3s;
+  }
+  
+  .pom-card__btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: #c0392b;
+    transition: width 0.35s ease;
+  }
+  
+  .pom-card__btn:hover { color: #c0392b; }
+  .pom-card__btn:hover::after { width: 100%; }
+  
+  .pom-card__btn svg {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.3s;
+  }
+  .pom-card__btn:hover svg { transform: translateX(4px); }
+  
+  /* ─────────────────────────────────────────
+     RESPONSIVE
+  ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3vw;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+      gap: 6vw;
+    }
+    .cards-section {
+      padding: 8vh 5vw 10vh;
+    }
+  }
