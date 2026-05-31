@@ -62,10 +62,20 @@ body {
   border-radius: 50%;
   background: radial-gradient(
     circle at center,
-    rgba(255, 60, 60, 0.24),
-    transparent 56%
+    rgba(212, 168, 87, 0.22),
+    rgba(176, 70, 70, 0.14) 35%,
+    transparent 58%
   );
   filter: blur(92px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
   pointer-events: none;
   z-index: 2;
 }
@@ -81,7 +91,7 @@ body {
   object-fit: cover;
   object-position: center;
   z-index: 1;
-  filter: brightness(1.35) contrast(1.2) saturate(1.4);
+  filter: brightness(1.15) contrast(1.1) saturate(1.05);
 }
 
 /* ─────────────────────────────────────────
@@ -91,13 +101,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 30%),
-    linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.08) 0%,
-      rgba(0, 0, 0, 0.15) 68%,
-      rgba(0, 0, 0, 0.18) 100%
-    );
+    radial-gradient(circle at top, rgba(196, 57, 43, 0.06), transparent 30%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.22) 100%);
   z-index: 3;
   pointer-events: none;
 }
@@ -232,11 +237,8 @@ body {
   line-height: 0.88;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--pom-white);
-  text-shadow:
-    0 18px 30px rgba(0, 0, 0, 0.35),
-    0 0 22px rgba(255, 255, 255, 0.14),
-    0 0 48px rgba(255, 0, 0, 0.12);
+  color: white;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
 .title-small {
@@ -250,18 +252,22 @@ body {
   margin-bottom: 0.8rem;
 }
 
+.hero__subtitle {
+  color: #d4af37;
+}
+
 .hero__title em {
   font-style: italic;
   font-family: var(--font-serif);
   font-weight: 300;
   font-size: 0.55em;
   letter-spacing: 0.08em;
-  color: var(--pom-red);
+  color: #b84f45;
   display: block;
   margin-top: 0.3rem;
   text-shadow:
-    0 0 28px rgba(255, 80, 80, 0.25),
-    0 0 68px rgba(192, 57, 43, 0.6);
+    0 0 24px rgba(184, 79, 69, 0.22),
+    0 0 48px rgba(0, 0, 0, 0.18);
 }
 
 /* ─────────────────────────────────────────
@@ -327,8 +333,8 @@ body {
 .panel-line {
   width: 40px;
   height: 1px;
-  background: var(--pom-red);
-  box-shadow: 0 0 8px var(--pom-red);
+  background: var(--pom-gold);
+  box-shadow: 0 0 8px rgba(212, 168, 87, 0.4);
 }
 
 @keyframes fadeInUp {
